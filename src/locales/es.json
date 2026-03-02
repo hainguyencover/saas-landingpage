@@ -1,0 +1,174 @@
+{
+    "nav": {
+        "features": "Características",
+        "pricing": "Precios",
+        "about": "Sobre nosotros",
+        "login": "Iniciar sesión",
+        "register": "Registrarse"
+    },
+    "hero": {
+        "title": "Gestión de Salón Profesional,",
+        "subtitle": "simple y efectiva.",
+        "description": "Una solución integral para ayudarle a gestionar citas, personal e ingresos. Optimice las operaciones para que pueda centrarse en la atención al cliente.",
+        "cta_trial": "Prueba gratuita",
+        "cta_pricing": "Ver precios",
+        "feature_trial": "Prueba de 14 días",
+        "feature_no_card": "Sin tarjeta de crédito",
+        "feature_support": "Soporte 24/7"
+    },
+    "features": {
+        "badge": "Características Clave",
+        "title": "Todo lo que necesitas para tu Salón",
+        "subtitle": "No más papeleo desordenado. Concéntrate en tu oficio, nosotros nos encargamos del resto.",
+        "items": {
+            "appointments": {
+                "name": "Gestión de Citas",
+                "description": "Programación inteligente, sin solapamientos. Los clientes pueden reservar online 24/7."
+            },
+            "staff": {
+                "name": "Gestión de Personal",
+                "description": "Seguimiento de asistencia, nómina y comisiones automáticas. Permisos detallados."
+            },
+            "revenue": {
+                "name": "Informes de Ingresos",
+                "description": "Gráficos visuales de ingresos, costes y beneficios por día, semana y mes."
+            },
+            "services": {
+                "name": "Gestión de Servicios",
+                "description": "Lista de servicios flexible, configuración fácil de precios y duración."
+            },
+            "marketing": {
+                "name": "Marketing Automatizado",
+                "description": "Envíe recordatorios automáticos, deseos de cumpleaños y solicitudes de reseñas por SMS."
+            },
+            "security": {
+                "name": "Seguridad y Protección",
+                "description": "Datos cifrados y copias de seguridad diarias. Comprometidos con la seguridad de los datos."
+            }
+        }
+    },
+    "pricing": {
+        "badge": "Precios",
+        "title": "Elige un plan que se adapte a tu escala",
+        "tabs": {
+            "software": "Planes de Software",
+            "sms": "SMS Adicionales"
+        },
+        "frequencies": {
+            "month": "Mensual",
+            "year": "Anual"
+        },
+        "plan_suffix": {
+            "month": "/mes",
+            "year": "/año"
+        },
+        "popular": "Más Popular",
+        "cta": "Registrarse Ahora",
+        "select_plan": "Seleccionar este plan",
+        "unlimited": "Ilimitado",
+        "view_more": "Ver más características",
+        "view_less": "Mostrar menos",
+        "addon_unit": "por paquete",
+        "quota": {
+            "sms": "SMS: {{count}} msgs",
+            "whatsapp": "WhatsApp: {{count}} msgs",
+            "email": "Email: {{count}} correos"
+        },
+        "no_plans": "No se encontraron planes {{frequency}}.",
+        "contact_us": "Póngase en contacto con nosotros para una consulta.",
+        "buy_now": "Comprar Ahora",
+        "addon_1k_name": "Paquete de {{name}}",
+        "addon_1k_desc": "Envíe recordatorios de citas y mensajes de marketing.",
+        "addon_5k_name": "Paquete de {{name}}",
+        "addon_5k_desc": "Mejor valor para salones en crecimiento.",
+        "addon_10k_name": "Paquete de {{name}}",
+        "addon_10k_desc": "Mejor precio para cadenas de salones.",
+        "modal": {
+            "plan_selection": "Confirmar selección de plan",
+            "addon_selection": "Confirmar compra de complemento",
+            "you_selected": "Has seleccionado el plan:",
+            "you_selected_addon": "Has seleccionado:",
+            "plan_redirect_notice": "Será redirigido a la página de registro para completar el proceso.",
+            "subscribe_notice": "Será redirigido a la página de pago para comprar este plan.",
+            "addon_redirect_notice": "Será redirigido a la página de pago para comprar este paquete.",
+            "what_is_included": "Qué incluye este plan:"
+        }
+    },
+    "common": {
+        "cancel": "Cancelar",
+        "continue": "Continuar"
+    },
+    "footer": {
+        "description": "Solución profesional de gestión de salones y manicura, que le ayuda a optimizar las operaciones và tăng doanh thu.",
+        "products": "Productos",
+        "support": "Soporte",
+        "user_guide": "Guía de usuario",
+        "contact": "Contáctenos",
+        "rights": "Bản quyền đã được bảo hộ."
+    },
+    "register": {
+        "title": "Registro del Salón",
+        "salonName": "Nombre del Salón",
+        "phone": "Número de teléfono",
+        "email": "Email (Cuenta)",
+        "country": "País",
+        "address": "Dirección",
+        "countries": {
+            "vn": "Vietnam",
+            "us": "Estados Unidos",
+            "es": "España"
+        },
+        "password": "Contraseña",
+        "submit": "Registrarse y Pagar",
+        "errors": {
+            "failed": "Error en el registro",
+            "subFailed": "Error al iniciar la suscripción"
+        },
+        "branding_title_1": "Comience su viaje hacia una",
+        "branding_title_2": "gestión perfecta",
+        "feature_1_title": "Horarios personalizables",
+        "feature_1_desc": "Gestione fácilmente las citas y los turnos del personal.",
+        "feature_2_title": "Marketing automatizado",
+        "feature_2_desc": "Mantenga a los clientes comprometidos con recordatorios inteligentes.",
+        "feature_3_title": "Informes en tiempo real",
+        "feature_3_desc": "Información que ayuda a que su negocio crezca.",
+        "joined_notice_1": "Se han unido",
+        "joined_notice_2": "500+",
+        "joined_notice_3": "salones este mes",
+        "trial_notice": "Regístrese hoy y obtenga 14 días de prueba gratuita. No se requiere tarjeta de crédito.",
+        "success": {
+            "title": "¡Registro Exitoso!",
+            "message": "Su salón ha sido creado. Por favor, inicie sesión en su panel para comenzar.",
+            "login_button": "Ir a Iniciar Sesión"
+        }
+    },
+    "login": {
+        "title": "Iniciar Sesión",
+        "email": "Email",
+        "password": "Contraseña",
+        "remember": "Recordarme",
+        "submit": "Iniciar Sesión",
+        "forgot_password": "¿Olvidó su contraseña?",
+        "no_account": "¿No tiene una cuenta?",
+        "register_now": "Regístrese ahora",
+        "errors": {
+            "invalid": "Email o contraseña inválidos",
+            "failed": "Error al iniciar sesión"
+        },
+        "welcome": "¡Bienvenido de nuevo! Por favor, introduzca sus datos.",
+        "register_success": "¡Registro completado con éxito! Por favor, inicia sesión para continuar.",
+        "branding_title_1": "Gestione su salón con",
+        "branding_title_2": "precisión",
+        "branding_title_3": "y",
+        "branding_title_4": "elegancia",
+        "branding_desc": "Únase a más de 2.000 propietarios de salones que han transformado su negocio con nuestra plataforma de gestión inteligente.",
+        "testimonial_text": "Este software cambió por completo la forma en que manejamos las citas. ¡Nuestra eficiencia aumentó en un 40% en el primer mes!",
+        "testimonial_author": "Sarah Jenkins",
+        "testimonial_role": "Propietaria, Bloom Hair Studio",
+        "success": {
+            "title": "¡Inicio de Sesión Exitoso!",
+            "message": "Bienvenido de nuevo. Elija un plan para comenzar.",
+            "button": "Elegir un Plan"
+        }
+    }
+}

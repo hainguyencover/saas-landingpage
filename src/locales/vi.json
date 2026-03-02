@@ -1,0 +1,177 @@
+{
+    "nav": {
+        "features": "Tính năng",
+        "pricing": "Bảng giá",
+        "about": "Về chúng tôi",
+        "login": "Đăng nhập",
+        "register": "Đăng ký"
+    },
+    "hero": {
+        "title": "Quản lý Salon chuyên nghiệp,",
+        "subtitle": "đơn giản và hiệu quả.",
+        "description": "Giải pháp toàn diện giúp bạn quản lý lịch hẹn, nhân viên, và doanh thu. Tối ưu hóa quy trình vận hành để bạn tập trung vào việc chăm sóc khách hàng.",
+        "cta_trial": "Dùng thử miễn phí",
+        "cta_pricing": "Xem bảng giá",
+        "feature_trial": "14 ngày dùng thử",
+        "feature_no_card": "Không cần thẻ tín dụng",
+        "feature_support": "Hỗ trợ 24/7"
+    },
+    "features": {
+        "badge": "Tính năng nổi bật",
+        "title": "Mọi thứ bạn cần để vận hành Salon",
+        "subtitle": "Không còn sổ sách rườm rà. Tập trung vào tay nghề, phần còn lại để chúng tôi lo.",
+        "items": {
+            "appointments": {
+                "name": "Quản lý Lịch hẹn",
+                "description": "Sắp xếp lịch hẹn thông minh, tránh trùng lặp. Khách hàng có thể đặt lịch online 24/7."
+            },
+            "staff": {
+                "name": "Quản lý Nhân viên",
+                "description": "Theo dõi chấm công, tính lương và hoa hồng tự động. Phân quyền chi tiết cho từng vị trí."
+            },
+            "revenue": {
+                "name": "Báo cáo Doanh thu",
+                "description": "Biểu đồ trực quan về doanh thu, chi phí và lợi nhuận theo ngày, tuần, tháng."
+            },
+            "services": {
+                "name": "Quản lý Dịch vụ",
+                "description": "Danh sách dịch vụ linh hoạt, thiết lập giá và thời gian thực hiện dễ dàng."
+            },
+            "marketing": {
+                "name": "CSKH Tự động",
+                "description": "Gửi tin nhắn nhắc lịch, chúc mừng sinh nhật và xin đánh giá tự động qua SMS/Zalo."
+            },
+            "security": {
+                "name": "Bảo mật & An toàn",
+                "description": "Dữ liệu được mã hóa và sao lưu hàng ngày. Cam kết bảo mật thông tin khách hàng."
+            }
+        }
+    },
+    "pricing": {
+        "badge": "Bảng giá",
+        "title": "Chọn gói phù hợp với quy mô của bạn",
+        "tabs": {
+            "software": "Gói phần mềm",
+            "sms": "Mua thêm SMS"
+        },
+        "frequencies": {
+            "month": "Tháng",
+            "year": "Năm"
+        },
+        "plan_suffix": {
+            "month": "/tháng",
+            "year": "/năm"
+        },
+        "popular": "Phổ biến nhất",
+        "cta": "Đăng ký ngay",
+        "select_plan": "Chọn gói này",
+        "unlimited": "Không giới hạn",
+        "view_more": "Xem thêm tính năng",
+        "view_less": "Ẩn bớt",
+        "addon_unit": "mỗi gói",
+        "quota": {
+            "sms": "SMS: {{count}} tin",
+            "whatsapp": "WhatsApp: {{count}} tin",
+            "email": "Email: {{count}} email"
+        },
+        "no_plans": "Không tìm thấy gói {{frequency}}.",
+        "contact_us": "Vui lòng liên hệ với chúng tôi để được tư vấn.",
+        "addon_subtitle": "Mua đứt theo nhu cầu, ví dụ mua thêm điểm hoặc tin nhắn SMS",
+        "subscription_subtitle": "Thu tiền hàng tháng/năm",
+        "one_time_payment": "Gói",
+        "buy_now": "Mua ngay",
+        "addon_1k_name": "Gói {{name}}",
+        "addon_1k_desc": "Gửi tin nhắn nhắc lịch và marketing.",
+        "addon_5k_name": "Gói {{name}}",
+        "addon_5k_desc": "Tiết kiệm hơn cho salon lớn.",
+        "addon_10k_name": "Gói {{name}}",
+        "addon_10k_desc": "Giá tốt nhất cho chuỗi salon.",
+        "modal": {
+            "plan_selection": "Xác nhận chọn gói",
+            "addon_selection": "Xác nhận mua gói bổ sung",
+            "you_selected": "Bạn đã chọn gói:",
+            "you_selected_addon": "Bạn đã chọn:",
+            "plan_redirect_notice": "Bạn sẽ được chuyển hướng đến trang đăng ký để hoàn tất quy trình.",
+            "subscribe_notice": "Bạn sẽ được chuyển hướng đến trang thanh toán để mua gói này.",
+            "addon_redirect_notice": "Bạn sẽ được chuyển hướng đến trang thanh toán để mua gói này.",
+            "what_is_included": "Bao gồm trong gói này:"
+        }
+    },
+    "common": {
+        "cancel": "Hủy",
+        "continue": "Tiếp tục"
+    },
+    "footer": {
+        "description": "Giải pháp quản lý tiệm nail và salon chuyên nghiệp, giúp bạn tối ưu hóa vận hành và tăng doanh thu.",
+        "products": "Sản phẩm",
+        "support": "Hỗ trợ",
+        "user_guide": "Hướng dẫn sử dụng",
+        "contact": "Liên hệ với chúng tôi",
+        "rights": "Bản quyền đã được bảo hộ."
+    },
+    "register": {
+        "title": "Đăng ký Salon",
+        "salonName": "Tên Salon",
+        "phone": "Số điện thoại",
+        "email": "Email (Tài khoản)",
+        "country": "Qu\u1ED1c gia",
+        "address": "\u0110\u1ECBa ch\u1EC9",
+        "countries": {
+            "vn": "Việt Nam",
+            "us": "United States",
+            "es": "Spain"
+        },
+        "password": "Mật khẩu",
+        "submit": "Đăng ký & Thanh toán",
+        "errors": {
+            "failed": "Đăng ký thất bại",
+            "subFailed": "Không thể khởi tạo đăng ký"
+        },
+        "branding_title_1": "Bắt đầu hành trình đến với",
+        "branding_title_2": "sự quản lý hoàn hảo",
+        "feature_1_title": "Lịch trình tùy chỉnh",
+        "feature_1_desc": "Dễ dàng quản lý lịch hẹn và ca làm việc của nhân viên.",
+        "feature_2_title": "Marketing tự động",
+        "feature_2_desc": "Giữ chân khách hàng với các lời nhắc thông minh.",
+        "feature_3_title": "Báo cáo thời gian thực",
+        "feature_3_desc": "Thông tin chuyên sâu giúp doanh nghiệp của bạn phát triển.",
+        "joined_notice_1": "Đã có",
+        "joined_notice_2": "500+",
+        "joined_notice_3": "salon tham gia trong tháng này",
+        "trial_notice": "Đăng ký ngay hôm nay và nhận 14 ngày dùng thử miễn phí. Không cần thẻ tín dụng.",
+        "success": {
+            "title": "Đăng ký thành công!",
+            "message": "Salon của bạn đã được khởi tạo. Vui lòng đăng nhập vào trang quản trị để bắt đầu.",
+            "login_button": "Đi tới Đăng nhập"
+        }
+    },
+    "login": {
+        "title": "Đăng nhập",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "remember": "Ghi nhớ đăng nhập",
+        "submit": "Đăng nhập",
+        "forgot_password": "Quên mật khẩu?",
+        "no_account": "Chưa có tài khoản?",
+        "register_now": "Đăng ký ngay",
+        "errors": {
+            "invalid": "Email hoặc mật khẩu không đúng",
+            "failed": "Đăng nhập thất bại"
+        },
+        "welcome": "Chào mừng bạn trở lại! Vui lòng nhập thông tin của bạn.",
+        "register_success": "Đăng ký thành công! Vui lòng đăng nhập để bắt đầu.",
+        "branding_title_1": "Quản lý salon của bạn với",
+        "branding_title_2": "sự chính xác",
+        "branding_title_3": "và",
+        "branding_title_4": "sự tinh tế",
+        "branding_desc": "Tham gia cùng hơn 2.000+ chủ salon đã thay đổi doanh nghiệp của họ với nền tảng quản lý thông minh của chúng tôi.",
+        "testimonial_text": "Phần mềm này hoàn toàn thay đổi cách chúng tôi xử lý lịch hẹn. Hiệu quả của chúng tôi đã tăng 40% ngay trong tháng đầu tiên!",
+        "testimonial_author": "Sarah Jenkins",
+        "testimonial_role": "Chủ sở hữu, Bloom Hair Studio",
+        "success": {
+            "title": "Đăng nhập thành công!",
+            "message": "Chào mừng bạn trở lại. Vui lòng chọn một gói cước để tiếp tục.",
+            "button": "Chọn gói cước"
+        }
+    }
+}

@@ -1,0 +1,177 @@
+{
+    "nav": {
+        "features": "Features",
+        "pricing": "Pricing",
+        "about": "About Us",
+        "login": "Login",
+        "register": "Register"
+    },
+    "hero": {
+        "title": "Professional Salon Management,",
+        "subtitle": "simple and effective.",
+        "description": "A comprehensive solution to help you manage appointments, staff, and revenue. Optimize operations so you can focus on customer care.",
+        "cta_trial": "Start Free Trial",
+        "cta_pricing": "View Pricing",
+        "feature_trial": "14-day free trial",
+        "feature_no_card": "No credit card required",
+        "feature_support": "24/7 Support"
+    },
+    "features": {
+        "badge": "Key Features",
+        "title": "Everything you need to run your Salon",
+        "subtitle": "No more messy paperwork. Focus on your craft, we handle the rest.",
+        "items": {
+            "appointments": {
+                "name": "Appointment Management",
+                "description": "Smart scheduling, no overlaps. Customers can book online 24/7."
+            },
+            "staff": {
+                "name": "Staff Management",
+                "description": "Track attendance, payroll, and commissions automatically. Granular permissions."
+            },
+            "revenue": {
+                "name": "Revenue Reports",
+                "description": "Visual charts for revenue, costs, and profit by day, week, month."
+            },
+            "services": {
+                "name": "Service Management",
+                "description": "Flexible service list, easy price and duration setup."
+            },
+            "marketing": {
+                "name": "Automated Marketing",
+                "description": "Send automated reminders, birthday wishes, and review requests via SMS."
+            },
+            "security": {
+                "name": "Security & Safety",
+                "description": "Encrypted data and daily backups. Committed to customer data security."
+            }
+        }
+    },
+    "pricing": {
+        "badge": "Pricing",
+        "title": "Choose a plan that fits your scale",
+        "tabs": {
+            "software": "Software Plans",
+            "sms": "Add-on SMS"
+        },
+        "frequencies": {
+            "month": "Monthly",
+            "year": "Yearly"
+        },
+        "plan_suffix": {
+            "month": "/month",
+            "year": "/year"
+        },
+        "popular": "Most popular",
+        "cta": "Register now",
+        "select_plan": "Select this plan",
+        "no_plans": "No {{frequency}} plans found.",
+        "contact_us": "Please contact us for a consultation.",
+        "unlimited": "Unlimited",
+        "view_more": "View more features",
+        "view_less": "Show less",
+        "addon_unit": "per pack",
+        "quota": {
+            "sms": "SMS: {{count}} msgs",
+            "whatsapp": "WhatsApp: {{count}} msgs",
+            "email": "Email: {{count}} emails"
+        },
+        "addon_subtitle": "Purchase on demand, for example buying more points or SMS messages.",
+        "subscription_subtitle": "Billed monthly or annually",
+        "one_time_payment": "Pack",
+        "buy_now": "Buy Now",
+        "addon_1k_name": "{{name}} Pack",
+        "addon_1k_desc": "Send appointment reminders and marketing messages.",
+        "addon_5k_name": "{{name}} Pack",
+        "addon_5k_desc": "Best value for growing salons.",
+        "addon_10k_name": "{{name}} Pack",
+        "addon_10k_desc": "Best price for salon chains.",
+        "modal": {
+            "plan_selection": "Confirm Plan Selection",
+            "addon_selection": "Confirm Add-on Purchase",
+            "you_selected": "You have selected the plan:",
+            "you_selected_addon": "You have selected:",
+            "plan_redirect_notice": "You will be redirected to the registration page to complete the process.",
+            "subscribe_notice": "You will be redirected to the payment page to purchase this plan.",
+            "addon_redirect_notice": "You will be redirected to the payment page to purchase this addon.",
+            "what_is_included": "What's included in this plan:"
+        }
+    },
+    "common": {
+        "cancel": "Cancel",
+        "continue": "Continue"
+    },
+    "footer": {
+        "description": "Professional salon and nail management solution, helping you optimize operations and increase revenue.",
+        "products": "Products",
+        "support": "Support",
+        "user_guide": "User Guide",
+        "contact": "Contact Us",
+        "rights": "All rights reserved."
+    },
+    "register": {
+        "title": "Salon Registration",
+        "salonName": "Salon Name",
+        "phone": "Phone Number",
+        "email": "Email (Account)",
+        "country": "Country",
+        "address": "Address",
+        "countries": {
+            "vn": "Vietnam",
+            "us": "United States",
+            "es": "Spain"
+        },
+        "password": "Password",
+        "submit": "Register & Pay",
+        "errors": {
+            "failed": "Registration failed",
+            "subFailed": "Failed to initiate subscription"
+        },
+        "branding_title_1": "Start your journey to",
+        "branding_title_2": "perfect management",
+        "feature_1_title": "Customizable Schedules",
+        "feature_1_desc": "Easily manage appointments and staff shifts.",
+        "feature_2_title": "Automated Marketing",
+        "feature_2_desc": "Keep customers engaged with smart reminders.",
+        "feature_3_title": "Real-time Reports",
+        "feature_3_desc": "Insights that help your business grow.",
+        "joined_notice_1": "Joined by",
+        "joined_notice_2": "500+",
+        "joined_notice_3": "salons this month",
+        "trial_notice": "Sign up today and get 14 days of free trial. No credit card required.",
+        "success": {
+            "title": "Registration Successful!",
+            "message": "Your salon has been created. Please log in to your dashboard to get started.",
+            "login_button": "Proceed to Login"
+        }
+    },
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "remember": "Remember me",
+        "submit": "Login",
+        "forgot_password": "Forgot password?",
+        "no_account": "Don't have an account?",
+        "register_now": "Register now",
+        "errors": {
+            "invalid": "Invalid email or password",
+            "failed": "Login failed"
+        },
+        "welcome": "Welcome back! Please enter your details.",
+        "register_success": "Registration successful! Please sign in to continue.",
+        "branding_title_1": "Manage your salon with",
+        "branding_title_2": "precision",
+        "branding_title_3": "and",
+        "branding_title_4": "elegance",
+        "branding_desc": "Join over 2,000+ salon owners who have transformed their business with our intelligent management platform.",
+        "testimonial_text": "This software completely changed how we handle appointments. Our efficiency increased by 40% in the first month!",
+        "testimonial_author": "Sarah Jenkins",
+        "testimonial_role": "Owner, Bloom Hair Studio",
+        "success": {
+            "title": "Login Successful!",
+            "message": "Welcome back. Choose a plan to get started.",
+            "button": "Choose a Plan"
+        }
+    }
+}
