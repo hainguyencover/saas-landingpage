@@ -10,7 +10,7 @@ import { Modal } from "./Modal";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export function Pricing() {
+export default function Pricing() {
     const { t } = useTranslation();
     const router = useRouter();
     const [plans, setPlans] = useState<Plan[]>([]);
@@ -21,7 +21,7 @@ export function Pricing() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [salonId, setSalonId] = useState<string | null>(null);
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+    const { API_URL } = require("@/lib/constants");
 
     const frequencies = [
         { value: "MONTH", label: t('pricing.frequencies.month'), priceSuffix: t('pricing.plan_suffix.month') },

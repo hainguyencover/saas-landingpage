@@ -8,7 +8,7 @@ import { LanguageSelector } from "./LanguageSelector";
 import { useTranslation } from "@/lib/i18n-context";
 import { motion, AnimatePresence } from "framer-motion";
 
-export function Navbar() {
+export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { t } = useTranslation();

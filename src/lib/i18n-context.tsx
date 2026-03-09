@@ -17,7 +17,7 @@ const translations: Record<string, any> = { en, vi, es };
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-export function I18nProvider({ children }: { children: ReactNode }) {
+export default function I18nProvider({ children }: { children: ReactNode }) {
     const [language, setLanguage] = useState("es"); // Default to Spanish as requested
 
     useEffect(() => {

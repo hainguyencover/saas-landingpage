@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n-context";
 
-export function Hero() {
+export default function Hero() {
     const { t } = useTranslation();
 
     return (

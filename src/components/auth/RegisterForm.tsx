@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n-context";
 import { motion } from "framer-motion";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+import { API_URL } from "@/lib/constants";
 
 export function RegisterForm() {
     const { t } = useTranslation();

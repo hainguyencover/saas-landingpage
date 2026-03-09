@@ -26,7 +26,9 @@ export interface Plan {
     limits: PlanLimit[];
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+import { API_URL as BASE_URL } from '../lib/constants';
+
+const API_URL = BASE_URL.trim().replace(/\/$/, '');
 
 export const fetchPlans = async (): Promise<Plan[]> => {
     console.log('[fetchPlans] Fetching from:', `${API_URL}/api/v1/plans/active`);

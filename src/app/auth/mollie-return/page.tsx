@@ -109,7 +109,7 @@ function MollieReturnContent() {
                         {status === "timeout" && "Almost there..."}
                     </h1>
                     <p className="text-slate-600 text-sm leading-relaxed max-w-[280px] mx-auto">
-                        {status === "polling" && "We're confirming your payment with Mollie. Just a moment branch..."}
+                        {status === "polling" && "We&apos;re confirming your payment with Mollie. Just a moment branch..."}
                         {status === "success" && detail}
                         {status === "failed" && detail}
                         {status === "timeout" && detail}

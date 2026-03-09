@@ -4,7 +4,7 @@ import { Calendar, Users, BarChart3, Scissors, MessageSquare, ShieldCheck } from
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n-context";
 
-export function Features() {
+export default function Features() {
     const { t } = useTranslation();
 
     const features = [

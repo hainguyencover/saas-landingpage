@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Facebook, Twitter, Instagram, Mail, MapPin, Phone, Github } from "lucide-react";
 import { useTranslation } from "@/lib/i18n-context";
 
-export function Footer() {
+export default function Footer() {
     const { t } = useTranslation();
 
     return (
