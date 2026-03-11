@@ -34,7 +34,7 @@ export const fetchPlans = async (): Promise<Plan[]> => {
     console.log('[fetchPlans] Fetching from:', `${API_URL}/api/v1/plans/active`);
     try {
         const response = await fetch(`${API_URL}/api/v1/plans/active`, {
-            cache: 'no-store', // Không cache – luôn lấy data mới nhất
+            next: { revalidate: 3600 }, // ISR: tự refresh sau 1 tiếng, tránh lỗi no-store với static build
         });
 
         console.log('[fetchPlans] Response status:', response.status);
@@ -57,7 +57,7 @@ export const fetchAddons = async (): Promise<any[]> => {
     console.log('[fetchAddons] Fetching from:', `${API_URL}/api/v1/addon-packages/active`);
     try {
         const response = await fetch(`${API_URL}/api/v1/addon-packages/active`, {
-            cache: 'no-store',
+            next: { revalidate: 3600 }, // ISR: tự refresh sau 1 tiếng
         });
 
         console.log('[fetchAddons] Response status:', response.status);
