@@ -46,7 +46,7 @@ function LoginPageContent() {
                 <div className="absolute bottom-12 left-12 right-12 z-10">
                     <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10">
                         <p className="text-slate-300 italic mb-4">
-                            "{t("login.testimonial_text")}"
+                            &quot;{t("login.testimonial_text")}&quot;
                         </p>
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-full bg-slate-700 border border-slate-600" />

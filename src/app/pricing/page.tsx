@@ -49,7 +49,7 @@ export default async function Pricing() {
                             Starter Plan For Everyone
                         </h2>
                         <p className="mb-0">
-                            Choose the plan that fits your salon's needs.
+                            Choose the plan that fits your salon&apos;s needs.
                         </p>
                     </div>
 

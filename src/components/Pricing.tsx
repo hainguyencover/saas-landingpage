@@ -205,24 +205,24 @@ export default function Pricing() {
                 if (plansData && plansData.length > 0) {
                     setPlans(plansData);
                 } else {
-                    usePlanFallback();
+                    applyPlanFallback();
                 }
 
                 if (addonsData && addonsData.length > 0) {
                     setAddons(addonsData);
                 } else {
-                    useAddonFallback();
+                    applyAddonFallback();
                 }
             } catch (error) {
                 console.error("Failed to load data, using fallback", error);
-                usePlanFallback();
-                useAddonFallback();
+                applyPlanFallback();
+                applyAddonFallback();
             } finally {
                 setIsLoading(false);
             }
         };
 
-        const usePlanFallback = () => {
+        const applyPlanFallback = () => {
             const fallbackPlans: Plan[] = [
                 {
                     id: "tier-basic",
@@ -293,7 +293,7 @@ export default function Pricing() {
             setPlans(fallbackPlans);
         };
 
-        const useAddonFallback = () => {
+        const applyAddonFallback = () => {
             const fallbackAddons = [
                 {
                     id: "addon-1k",
