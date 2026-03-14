@@ -99,12 +99,12 @@
         "continue": "Continuar"
     },
     "footer": {
-        "description": "Solución profesional de gestión de salones y manicura, que le ayuda a optimizar las operaciones và tăng doanh thu.",
+        "description": "Solución profesional de gestión de salones y manicura, que le ayuda a optimizar las operaciones e incrementar los ingresos.",
         "products": "Productos",
         "support": "Soporte",
         "user_guide": "Guía de usuario",
         "contact": "Contáctenos",
-        "rights": "Bản quyền đã được bảo hộ."
+        "rights": "Todos los derechos reservados."
     },
     "register": {
         "title": "Registro del Salón",
@@ -116,7 +116,16 @@
         "countries": {
             "vn": "Vietnam",
             "us": "Estados Unidos",
-            "es": "España"
+            "fr": "Francia",
+            "de": "Alemania",
+            "uk": "Reino Unido",
+            "es": "España",
+            "nl": "Países Bajos",
+            "ch": "Suiza",
+            "pl": "Polonia",
+            "cz": "República Checa",
+            "sk": "Eslovaquia",
+            "it": "Italia"
         },
         "password": "Contraseña",
         "submit": "Registrarse y Pagar",

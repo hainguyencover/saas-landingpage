@@ -118,8 +118,17 @@
         "address": "\u0110\u1ECBa ch\u1EC9",
         "countries": {
             "vn": "Việt Nam",
-            "us": "United States",
-            "es": "Spain"
+            "us": "Hoa Kỳ",
+            "fr": "Pháp",
+            "de": "Đức",
+            "uk": "Vương quốc Anh",
+            "es": "Tây Ban Nha",
+            "nl": "Hà Lan",
+            "ch": "Thụy Sĩ",
+            "pl": "Ba Lan",
+            "cz": "Cộng hòa Séc",
+            "sk": "Slovakia",
+            "it": "Ý"
         },
         "password": "Mật khẩu",
         "submit": "Đăng ký & Thanh toán",

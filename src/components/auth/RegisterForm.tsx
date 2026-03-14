@@ -24,12 +24,30 @@ export function RegisterForm() {
         name: "",
         email: "",
         phone: "",
-        country: "VN",
+        country: "ES",
         password: "",
         address: "", // Add address field
         planId: planId,
         billingCycle: billingCycle
     });
+
+    const getPhonePlaceholder = (country: string) => {
+        const placeholders: Record<string, string> = {
+            VN: "+84 123 456 789",
+            US: "+1 123 456 7890",
+            FR: "+33 6 12 34 56 78",
+            DE: "+49 151 12345678",
+            UK: "+44 7123 456789",
+            ES: "+34 612 345 678",
+            NL: "+31 6 12345678",
+            CH: "+41 71 234 56 78",
+            PL: "+48 512 345 678",
+            CZ: "+420 612 345 678",
+            SK: "+421 912 345 678",
+            IT: "+39 345 678 9012"
+        };
+        return placeholders[country] || "+x xxxx xxxx";
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -180,7 +198,7 @@ export function RegisterForm() {
                         name="phone"
                         type="tel"
                         required
-                        placeholder="+84 123 456 789"
+                        placeholder={getPhonePlaceholder(formData.country)}
                         value={formData.phone}
                         onChange={handleChange}
                         className="block w-full rounded-xl border-slate-200 py-3 px-4 text-slate-900 shadow-sm transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 sm:text-sm outline-none border"
@@ -196,11 +214,20 @@ export function RegisterForm() {
                         name="country"
                         value={formData.country}
                         onChange={handleChange}
-                        className="block w-full rounded-xl border-slate-200 py-3 px-4 text-slate-900 shadow-sm transition-all duration-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 sm:text-sm outline-none border appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236b7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_0.75rem_center] bg-no-repeat"
+                        className="block w-full rounded-xl border-slate-200 py-3 px-4 text-slate-900 shadow-sm transition-all duration-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 sm:text-sm outline-none border appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236b7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_0.75rem_center] bg-no-repeat uppercase"
                     >
+                        <option value="ES">{t("register.countries.es")}</option>
+                        <option value="FR">{t("register.countries.fr")}</option>
+                        <option value="DE">{t("register.countries.de")}</option>
+                        <option value="UK">{t("register.countries.uk")}</option>
+                        <option value="IT">{t("register.countries.it")}</option>
+                        <option value="NL">{t("register.countries.nl")}</option>
+                        <option value="CH">{t("register.countries.ch")}</option>
+                        <option value="PL">{t("register.countries.pl")}</option>
+                        <option value="CZ">{t("register.countries.cz")}</option>
+                        <option value="SK">{t("register.countries.sk")}</option>
                         <option value="VN">{t("register.countries.vn")}</option>
                         <option value="US">{t("register.countries.us")}</option>
-                        <option value="ES">{t("register.countries.es")}</option>
                     </select>
                 </div>
 
