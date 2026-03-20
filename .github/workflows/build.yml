@@ -1,0 +1,32 @@
+name: Next.js Build Check
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js app
+        run: npm run build
+        env:
+          # Thêm các biến môi trường cần thiết cho quá trình build (nếu có)
+          NEXT_PUBLIC_API_URL: https://api.yocheckin.com
+          NEXT_PUBLIC_FRONTEND_URL: https://app.yocheckin.com
+          NEXT_PUBLIC_LANDING_URL: https://yocheckin.com
