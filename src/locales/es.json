@@ -75,7 +75,9 @@
             "email": "Email: {{count}} correos"
         },
         "no_plans": "No se encontraron planes {{frequency}}.",
-        "contact_us": "Póngase en contacto con nosotros para una consulta.",
+        "addon_subtitle": "Cómprelo según sus necesidades, por ejemplo, comprando más puntos o mensajes SMS.",
+        "subscription_subtitle": "Facturación mensual o anual",
+        "one_time_payment": "Paquete",
         "buy_now": "Comprar Ahora",
         "addon_1k_name": "Paquete de {{name}}",
         "addon_1k_desc": "Envíe recordatorios de citas y mensajes de marketing.",

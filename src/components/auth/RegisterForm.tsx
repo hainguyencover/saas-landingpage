@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n-context";
@@ -8,65 +8,127 @@ import { motion } from "framer-motion";
 
 import { API_URL } from "@/lib/constants";
 
+interface Plan {
+    id: string;
+    name: string;
+    price: number;
+    // ... other fields if needed
+}
+
 export function RegisterForm() {
     const { t } = useTranslation();
     const searchParams = useSearchParams();
     const router = useRouter();
-    const planId = searchParams.get("plan") || "plan_basic";
+    const initialPlanId = searchParams.get("plan");
     const billingCycle = searchParams.get("cycle") || "MONTHLY";
 
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [registeredEmail, setRegisteredEmail] = useState("");
     const [error, setError] = useState("");
+    const [plans, setPlans] = useState<Plan[]>([]);
 
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         phone: "",
         country: "ES",
+        dialCode: "+34",
         password: "",
-        address: "", // Add address field
-        planId: planId,
+        address: "",
+        planId: initialPlanId || "",
         billingCycle: billingCycle
     });
 
-    const getPhonePlaceholder = (country: string) => {
-        const placeholders: Record<string, string> = {
-            VN: "+84 123 456 789",
-            US: "+1 123 456 7890",
-            FR: "+33 6 12 34 56 78",
-            DE: "+49 151 12345678",
-            UK: "+44 7123 456789",
-            ES: "+34 612 345 678",
-            NL: "+31 6 12345678",
-            CH: "+41 71 234 56 78",
-            PL: "+48 512 345 678",
-            CZ: "+420 612 345 678",
-            SK: "+421 912 345 678",
-            IT: "+39 345 678 9012"
+    // Fetch plans from backend
+    useEffect(() => {
+        const fetchPlans = async () => {
+            try {
+                const res = await fetch(`${API_URL}/api/v1/plans/active`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setPlans(data);
+
+                    // If we have plans, validate or set default planId
+                    if (data.length > 0) {
+                        const planExists = data.some((p: Plan) => p.id === initialPlanId);
+                        if (!planExists) {
+                            // Default to first free plan or first plan
+                            const freePlan = data.find((p: Plan) => p.price === 0);
+                            setFormData(prev => ({ 
+                                ...prev, 
+                                planId: freePlan ? freePlan.id : data[0].id 
+                            }));
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to fetch plans", err);
+            }
         };
-        return placeholders[country] || "+x xxxx xxxx";
-    };
+        fetchPlans();
+    }, [initialPlanId, API_URL]);
+
+    const currentPlan = useMemo(() => {
+        return plans.find(p => p.id === formData.planId);
+    }, [plans, formData.planId]);
+
+    const countries = [
+        { code: "VN", name: "Vietnam", dial: "+84", flag: "🇻🇳" },
+        { code: "US", name: "United States", dial: "+1", flag: "🇺🇸" },
+        { code: "ES", name: "Spain", dial: "+34", flag: "🇪🇸" },
+        { code: "FR", name: "France", dial: "+33", flag: "🇫🇷" },
+        { code: "DE", name: "Germany", dial: "+49", flag: "🇩🇪" },
+        { code: "UK", name: "United Kingdom", dial: "+44", flag: "🇬🇧" },
+        { code: "IT", name: "Italy", dial: "+39", flag: "🇮🇹" },
+        { code: "NL", name: "Netherlands", dial: "+31", flag: "🇳🇱" },
+        { code: "CH", name: "Switzerland", dial: "+41", flag: "🇨🇭" },
+        { code: "PL", name: "Poland", dial: "+48", flag: "🇵🇱" },
+        { code: "CZ", name: "Czech Republic", dial: "+420", flag: "🇨🇿" },
+        { code: "SK", name: "Slovakia", dial: "+421", flag: "🇸🇰" }
+    ];
+
+    const currentCountry = countries.find(c => c.code === formData.country) || countries[2];
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const filteredCountries = countries.filter(c =>
+        c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        c.dial.includes(searchTerm) ||
+        c.code.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleCountrySelect = (countryCode: string) => {
+        const country = countries.find(c => c.code === countryCode);
+        setFormData({ ...formData, country: countryCode, dialCode: country?.dial || "+x" });
+        setIsDropdownOpen(false);
+        setSearchTerm("");
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
+// ... [rest of handleSubmit code - keeping it as it was in my last successful update]
+
+// No changes needed to handleSubmit, keeping the logic to combine dialCode + phone
         e.preventDefault();
         setIsLoading(true);
         setError("");
 
+        const fullPhone = `${formData.dialCode}${formData.phone.replace(/\D/g, "")}`;
+
         try {
-            // 1. Create Salon
             const res = await fetch(`${API_URL}/api/v1/salons`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     name: formData.name,
                     email: formData.email,
-                    phone: formData.phone,
+                    phone: fullPhone,
                     country: formData.country,
                     address: formData.address,
                     password: formData.password,
@@ -86,9 +148,10 @@ export function RegisterForm() {
                 localStorage.setItem("salonId", salon.id.toString());
             }
 
-            // 2. Handle Subscription/Login Flow
-            // Refactored condition: if it's NOT a free plan, initiate subscription
-            if (formData.planId && !formData.planId.toLowerCase().includes("free")) {
+            // check if selected plan is free
+            const isFreePlan = currentPlan ? currentPlan.price === 0 : true;
+
+            if (!isFreePlan) {
                 try {
                     const subRes = await fetch(`${API_URL}/api/v1/subscriptions/subscribe`, {
                         method: "POST",
@@ -108,14 +171,12 @@ export function RegisterForm() {
                             return;
                         }
                     }
-                    // If no checkout URL or sub failed, fallback to success message
                     setIsSuccess(true);
                 } catch (subErr) {
                     console.error("Subscription initiation failed", subErr);
                     setIsSuccess(true);
                 }
             } else {
-                // Free plan success
                 setIsSuccess(true);
             }
 
@@ -127,6 +188,7 @@ export function RegisterForm() {
     };
 
     if (isSuccess) {
+// ... [success UI code remains same]
         return (
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -189,46 +251,90 @@ export function RegisterForm() {
                     />
                 </div>
 
-                <div>
+                <div className="md:col-span-2 relative">
                     <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">
                         {t("register.phone")}
                     </label>
-                    <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        required
-                        placeholder={getPhonePlaceholder(formData.country)}
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="block w-full rounded-xl border-slate-200 py-3 px-4 text-slate-900 shadow-sm transition-all duration-200 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 sm:text-sm outline-none border"
-                    />
-                </div>
+                    <div className="flex gap-2">
+                        <div className="relative shrink-0">
+                            <button
+                                type="button"
+                                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                className="flex items-center gap-2 px-3 h-[50px] bg-slate-50 border border-slate-200 rounded-xl transition-all duration-200 hover:bg-slate-100 hover:border-slate-300 active:scale-95 group shadow-sm"
+                            >
+                                <span className="text-xl leading-none">{currentCountry.flag}</span>
+                                <span className="text-sm font-bold text-slate-700">{currentCountry.dial}</span>
+                                <svg className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
 
-                <div>
-                    <label htmlFor="country" className="block text-sm font-semibold text-slate-700 mb-2">
-                        {t("register.country")}
-                    </label>
-                    <select
-                        id="country"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                        className="block w-full rounded-xl border-slate-200 py-3 px-4 text-slate-900 shadow-sm transition-all duration-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 sm:text-sm outline-none border appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236b7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_0.75rem_center] bg-no-repeat uppercase"
-                    >
-                        <option value="ES">{t("register.countries.es")}</option>
-                        <option value="FR">{t("register.countries.fr")}</option>
-                        <option value="DE">{t("register.countries.de")}</option>
-                        <option value="UK">{t("register.countries.uk")}</option>
-                        <option value="IT">{t("register.countries.it")}</option>
-                        <option value="NL">{t("register.countries.nl")}</option>
-                        <option value="CH">{t("register.countries.ch")}</option>
-                        <option value="PL">{t("register.countries.pl")}</option>
-                        <option value="CZ">{t("register.countries.cz")}</option>
-                        <option value="SK">{t("register.countries.sk")}</option>
-                        <option value="VN">{t("register.countries.vn")}</option>
-                        <option value="US">{t("register.countries.us")}</option>
-                    </select>
+                            {isDropdownOpen && (
+                                <>
+                                    <div
+                                        className="fixed inset-0 z-20"
+                                        onClick={() => setIsDropdownOpen(false)}
+                                    />
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        className="absolute left-0 top-full mt-2 w-72 max-h-80 bg-white border border-slate-200 rounded-2xl shadow-2xl z-30 overflow-hidden flex flex-col"
+                                    >
+                                        <div className="p-3 border-b border-slate-100 bg-slate-50/50">
+                                            <input
+                                                type="text"
+                                                placeholder="Search country..."
+                                                value={searchTerm}
+                                                onChange={(e) => setSearchTerm(e.target.value)}
+                                                className="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                                                onClick={(e) => e.stopPropagation()}
+                                            />
+                                        </div>
+                                        <div className="overflow-y-auto py-2">
+                                            {filteredCountries.length > 0 ? (
+                                                filteredCountries.map((c) => (
+                                                    <button
+                                                        key={c.code}
+                                                        type="button"
+                                                        onClick={() => handleCountrySelect(c.code)}
+                                                        className={`w-full flex items-center justify-between px-4 py-2.5 hover:bg-slate-50 transition-colors group ${formData.country === c.code ? 'bg-indigo-50/50' : ''}`}
+                                                    >
+                                                        <div className="flex items-center gap-3">
+                                                            <span className="text-xl leading-none">{c.flag}</span>
+                                                            <span className={`text-sm ${formData.country === c.code ? 'font-bold text-indigo-600' : 'text-slate-700'}`}>
+                                                                {c.name}
+                                                            </span>
+                                                        </div>
+                                                        <span className="text-xs font-mono text-slate-400 font-bold group-hover:text-indigo-500">
+                                                            {c.dial}
+                                                        </span>
+                                                    </button>
+                                                ))
+                                            ) : (
+                                                <div className="px-4 py-8 text-center">
+                                                    <p className="text-sm text-slate-400 italic">No countries found</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                </>
+                            )}
+                        </div>
+
+                        <div className="flex-1">
+                            <input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                required
+                                placeholder="612 345 678"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                className="block w-full h-[50px] rounded-xl border-slate-200 px-4 text-slate-900 shadow-sm transition-all duration-200 font-medium placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 sm:text-sm outline-none border"
+                            />
+                        </div>
+                    </div>
                 </div>
 
                 <div className="md:col-span-2">

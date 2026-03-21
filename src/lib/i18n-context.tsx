@@ -48,6 +48,9 @@ export default function I18nProvider({ children }: { children: ReactNode }) {
         }
 
         if (typeof value !== "string") {
+            if (replacements?.defaultValue) {
+                return String(replacements.defaultValue);
+            }
             return key;
         }
 

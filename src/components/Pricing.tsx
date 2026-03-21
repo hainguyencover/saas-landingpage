@@ -348,7 +348,7 @@ export default function Pricing() {
                             </h3>
                             <div className="h-px w-8 bg-blue-600"></div>
                         </div>
-                        <p className="mt-2 text-sm text-slate-500">{t('pricing.subscription_subtitle', { defaultValue: 'Thu tiền hàng tháng/năm' })}</p>
+                        <p className="mt-2 text-sm text-slate-500">{t('pricing.subscription_subtitle', { defaultValue: 'Billed monthly or annually' })}</p>
 
                         <div className="mt-8 grid grid-cols-2 gap-x-1 rounded-full bg-slate-100 p-1 ring-1 ring-inset ring-slate-200">
                             {frequencies.map((option) => (
@@ -468,7 +468,7 @@ export default function Pricing() {
                             <div className="h-px w-8 bg-blue-600"></div>
                         </div>
                         <p className="mt-2 text-sm text-slate-500 max-w-xl">
-                            {t('pricing.addon_subtitle', { defaultValue: 'Mua đứt theo nhu cầu, ví dụ mua thêm điểm hoặc tin nhắn SMS' })}
+                            {t('pricing.addon_subtitle', { defaultValue: 'Purchase on demand, for example buying more points or SMS messages' })}
                         </p>
                     </div>
 
@@ -491,7 +491,7 @@ export default function Pricing() {
                                 <p className="mt-4 text-sm leading-6 text-slate-600 h-12 line-clamp-2">{addon.description}</p>
                                 <p className="mt-6 flex items-baseline gap-x-1">
                                     <span className="text-4xl font-bold tracking-tight text-slate-900">€{addon.price}</span>
-                                    <span className="text-sm font-semibold leading-6 text-slate-600">/ {t('pricing.one_time_payment', { defaultValue: 'Gói' })}</span>
+                                    <span className="text-sm font-semibold leading-6 text-slate-600">/ {t('pricing.one_time_payment', { defaultValue: 'Pack' })}</span>
                                 </p>
                                 <button
                                     onClick={() => handleSelectAddon(addon)}
