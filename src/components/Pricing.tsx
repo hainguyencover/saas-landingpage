@@ -33,6 +33,25 @@ export default function Pricing() {
     const [selectedItem, setSelectedItem] = useState<{ type: 'plan' | 'addon', data: any } | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // Inline Error State for Modal
+    const [errorMessage, setErrorMessage] = useState("");
+
+    const extractError = (responseData: any, defaultMsg: string) => {
+        if (typeof responseData.data === 'string' && responseData.data.trim() !== '') {
+            return responseData.data;
+        }
+        if (responseData.error) return responseData.error;
+        if (responseData.message && responseData.message !== 'Invalid request' && responseData.message !== 'Error') {
+            return responseData.message;
+        }
+        return defaultMsg;
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setErrorMessage(""), 200);
+    };
+
     const checkAuth = () => {
         const token = localStorage.getItem("token");
         const savedSalonId = localStorage.getItem("salonId");
@@ -81,7 +100,7 @@ export default function Pricing() {
                 console.error("Failed to recover salonId", err);
             }
             setIsSubmitting(false);
-            alert("Could not find your Salon information. Please try logging in again.");
+            setErrorMessage("Could not find your Salon information. Please try logging in again.");
             return;
         }
 
@@ -117,7 +136,7 @@ export default function Pricing() {
                 console.error("Failed to recover salonId", err);
             }
             setIsSubmitting(false);
-            alert("Could not find your Salon information. Please try logging in again.");
+            setErrorMessage("Could not find your Salon information. Please try logging in again.");
             return;
         }
 
@@ -141,20 +160,23 @@ export default function Pricing() {
                 }),
             });
 
-            if (res.ok) {
-                const data = await res.json();
+            const responseData = await res.json();
+
+            if (res.ok && (!responseData.code || responseData.code === 0)) {
+                const data = responseData.data || responseData;
                 if (data.checkoutUrl) {
                     window.location.href = data.checkoutUrl;
+                } else if (data.status === "PAID" || data.status === "ACTIVE") {
+                    router.push(`/auth/mollie-return?status=success&orderId=${data.orderId || ''}`);
                 } else {
                     router.push("/auth/mollie-return?status=success");
                 }
             } else {
-                const errData = await res.json();
-                alert(errData.error || "Failed to initiate subscription");
+                setErrorMessage(extractError(responseData, "Failed to initiate subscription"));
             }
         } catch (error) {
             console.error("Subscription failed", error);
-            alert("An error occurred. Please try again.");
+            setErrorMessage("An error occurred. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -175,20 +197,23 @@ export default function Pricing() {
                 }),
             });
 
-            if (res.ok) {
-                const data = await res.json();
+            const responseData = await res.json();
+
+            if (res.ok && (!responseData.code || responseData.code === 0)) {
+                const data = responseData.data || responseData;
                 if (data.checkoutUrl) {
                     window.location.href = data.checkoutUrl;
+                } else if (data.status === "PAID" || data.status === "ACTIVE") {
+                    router.push(`/auth/mollie-return?status=success&type=addon&orderId=${data.orderId || ''}`);
                 } else {
-                    alert("No payment URL received. Please try again.");
+                    router.push("/auth/mollie-return?status=success&type=addon");
                 }
             } else {
-                const errData = await res.json();
-                alert(errData.error || "Failed to initiate addon purchase");
+                setErrorMessage(extractError(responseData, "Failed to initiate addon purchase"));
             }
         } catch (error) {
             console.error("Addon purchase failed", error);
-            alert("An error occurred. Please try again.");
+            setErrorMessage("An error occurred. Please try again.");
         } finally {
             setIsSubmitting(false);
         }
@@ -330,7 +355,7 @@ export default function Pricing() {
     const filteredPlans = plans.filter(p => p.intervalUnit === frequency.value);
 
     return (
-        <div className="bg-white py-24 sm:py-32" id="pricing">
+        <div className="bg-white pt-32 pb-24 sm:pt-40 sm:pb-32" id="pricing">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-4xl text-center">
                     <h2 className="text-base font-semibold leading-7 text-blue-600">{t('pricing.badge')}</h2>
@@ -507,12 +532,12 @@ export default function Pricing() {
 
             <Modal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                onClose={handleCloseModal}
                 title={selectedItem?.type === 'plan' ? t('pricing.modal.plan_selection') : t('pricing.modal.addon_selection')}
                 footer={
                     <>
                         <button
-                            onClick={() => setIsModalOpen(false)}
+                            onClick={handleCloseModal}
                             className="rounded-lg px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
                             disabled={isSubmitting}
                         >
@@ -549,6 +574,19 @@ export default function Pricing() {
                     </>
                 }
             >
+                {errorMessage && (
+                    <motion.div 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mb-6 flex items-center gap-3 text-red-600 bg-red-50 p-4 rounded-xl border border-red-100 shadow-sm"
+                    >
+                        <svg className="w-5 h-5 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <p className="text-sm font-medium">{errorMessage}</p>
+                    </motion.div>
+                )}
+
                 {selectedItem?.type === 'plan' ? (
                     <div className="space-y-4">
                         <div className="rounded-xl bg-blue-50 p-4 border border-blue-100">

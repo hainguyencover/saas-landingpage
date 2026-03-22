@@ -76,6 +76,7 @@ export function LoginForm() {
                 }
 
                 setFormData({ email: "", password: "", remember: false });
+                window.dispatchEvent(new Event("auth-changed"));
                 setIsSuccess(true);
             } else {
                 throw new Error(t("login.errors.failed"));

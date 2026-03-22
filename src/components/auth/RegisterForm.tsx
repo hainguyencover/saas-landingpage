@@ -148,35 +148,30 @@ export function RegisterForm() {
                 localStorage.setItem("salonId", salon.id.toString());
             }
 
-            // check if selected plan is free
-            const isFreePlan = currentPlan ? currentPlan.price === 0 : true;
+            // Always call subscribe to initialize backend records (Subscription, Quota)
+            try {
+                const subRes = await fetch(`${API_URL}/api/v1/subscriptions/subscribe`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        salonId: salon.id,
+                        planId: formData.planId,
+                        billingCycle: formData.billingCycle,
+                        redirectUrl: window.location.origin + "/auth/mollie-return"
+                    }),
+                });
 
-            if (!isFreePlan) {
-                try {
-                    const subRes = await fetch(`${API_URL}/api/v1/subscriptions/subscribe`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            salonId: salon.id,
-                            planId: formData.planId,
-                            billingCycle: formData.billingCycle,
-                            redirectUrl: window.location.origin + "/auth/mollie-return"
-                        }),
-                    });
-
-                    if (subRes.ok) {
-                        const subData = await subRes.json();
-                        if (subData.checkoutUrl) {
-                            window.location.href = subData.checkoutUrl;
-                            return;
-                        }
+                if (subRes.ok) {
+                    const subData = await subRes.json();
+                    // If it's a paid plan, redirect to Mollie
+                    if (subData.checkoutUrl && subData.status === "PENDING") {
+                        window.location.href = subData.checkoutUrl;
+                        return;
                     }
-                    setIsSuccess(true);
-                } catch (subErr) {
-                    console.error("Subscription initiation failed", subErr);
-                    setIsSuccess(true);
                 }
-            } else {
+                setIsSuccess(true);
+            } catch (subErr) {
+                console.error("Subscription initiation failed", subErr);
                 setIsSuccess(true);
             }
 

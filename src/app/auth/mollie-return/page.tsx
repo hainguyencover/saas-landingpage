@@ -13,6 +13,7 @@ const MAX_POLLS = 10; // 30 seconds total
 function MollieReturnContent() {
     const searchParams = useSearchParams();
     const orderId = searchParams.get("orderId");
+    const type = searchParams.get("type"); // "addon" or undefined/null
 
     const [status, setStatus] = useState<"polling" | "success" | "failed" | "timeout">("polling");
     const [detail, setDetail] = useState("");
@@ -20,6 +21,13 @@ function MollieReturnContent() {
     const [salonId, setSalonId] = useState<number | null>(null);
 
     const pollStatus = useCallback(async () => {
+        const urlStatus = searchParams.get("status");
+        if (urlStatus === "success") {
+            setStatus("success");
+            setDetail("Your subscription has been successfully activated!");
+            return;
+        }
+
         if (!orderId) {
             setStatus("failed");
             setDetail("Invalid return URL — missing orderId.");
@@ -32,16 +40,36 @@ function MollieReturnContent() {
             setPollCount(count);
 
             try {
-                const response = await fetch(`${API_URL}/api/v1/subscriptions/status?paymentId=${orderId}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.status === "ACTIVE") {
-                        clearInterval(interval);
-                        setStatus("success");
-                        setDetail("Your subscription has been successfully activated!");
-                        setSalonId(data.salonId);
-                        return;
+                let isSuccess = false;
+                let finalSalonId = null;
+                
+                if (type === "addon") {
+                    const currentSalonId = localStorage.getItem("salonId");
+                    const url = `${API_URL}/api/v1/mollie/addons/orders/${orderId}?salonId=${currentSalonId || 0}`;
+                    const response = await fetch(url);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.status === "PAID" || data.status === "ACTIVE") {
+                            isSuccess = true;
+                        }
                     }
+                } else {
+                    const response = await fetch(`${API_URL}/api/v1/subscriptions/status?paymentId=${orderId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.status === "ACTIVE" || data.status === "PAID") {
+                            isSuccess = true;
+                            finalSalonId = data.salonId;
+                        }
+                    }
+                }
+
+                if (isSuccess) {
+                    clearInterval(interval);
+                    setStatus("success");
+                    setDetail(type === "addon" ? "Your add-on has been successfully activated!" : "Your subscription has been successfully activated!");
+                    if (finalSalonId) setSalonId(finalSalonId);
+                    return;
                 }
 
                 if (count >= MAX_POLLS) {

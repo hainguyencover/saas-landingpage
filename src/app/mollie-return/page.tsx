@@ -26,6 +26,17 @@ function MollieReturnContent() {
     const [pollCount, setPollCount] = useState(0);
 
     const pollStatus = useCallback(async () => {
+        const urlStatus = searchParams.get("status");
+        if (urlStatus === "success") {
+            setStatus("success");
+            setDetail(
+                type === "addon"
+                    ? "Quota đã được ghi nhận vào tài khoản salon của bạn!"
+                    : "Gói đăng ký của bạn đã được kích hoạt thành công!"
+            );
+            return;
+        }
+
         if (!orderId) {
             setStatus("failed");
             setDetail("URL không hợp lệ — thiếu orderId. Vui lòng liên hệ hỗ trợ.");
